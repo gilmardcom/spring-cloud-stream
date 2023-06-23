@@ -1,0 +1,32 @@
+sequenceDiagram
+    actor User
+    participant GatewayServise
+    box LightYellow Stream
+    participant Question
+    end
+    box LightYellow Stream
+    participant Answer
+    end
+    participant DistributerService
+    box LightYellow Stream
+    participant TimeQuestion
+    end
+    participant TimeService
+    box LightYellow Stream
+    participant SequenceQuestion
+    end
+    participant SequenceService
+    User->>+GatewayServise : asks 'Time/Sequence'
+    GatewayServise--)Question : Supply
+    Question--)DistributerService : to Consume
+    par Time question
+        DistributerService--)TimeQuestion : Supply
+        TimeQuestion--)TimeService : 'Time'?
+        TimeService--)Answer : Supply
+    and Sequence questoin
+        DistributerService--)SequenceQuestion : Supply
+        SequenceQuestion--)SequenceService : 'Sequence'?
+        SequenceService--)Answer : Supply    
+    end
+    Answer--)GatewayServise : to Consume
+    GatewayServise->>-User : the Answer
