@@ -13,20 +13,23 @@ sequenceDiagram
     end
     participant TimeService
     box LightYellow Stream
-    participant SequenceQuestion
+    participant DateQuestion
     end
-    participant SequenceService
-    User->>+GatewayServise : asks 'Time/Sequence'
+    participant DateService
+    User->>+GatewayServise : asks 'Time/Date'
     GatewayServise--)Question : Supply
     Question--)DistributerService : to Consume
+    DistributerService-->>DistributerService : decides to whom should give the question
     par Time question
         DistributerService--)TimeQuestion : Supply
-        TimeQuestion--)TimeService : 'Time'?
+        TimeQuestion--)TimeService : to Consume
+        TimeService-->>TimeService : calculates Time
         TimeService--)Answer : Supply
-    and Sequence questoin
-        DistributerService--)SequenceQuestion : Supply
-        SequenceQuestion--)SequenceService : 'Sequence'?
-        SequenceService--)Answer : Supply    
+    and Date questoin
+        DistributerService--)DateQuestion : Supply
+        DateQuestion--)DateService : to Consume
+        DateService-->>DateService : calculates Date
+        DateService--)Answer : Supply    
     end
     Answer--)GatewayServise : to Consume
     GatewayServise->>-User : the Answer
