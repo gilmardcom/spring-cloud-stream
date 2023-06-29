@@ -1,0 +1,33 @@
+# Version catalog for all projects and modules
+#   * the only place to define any dependency etc and the corresponding version
+#   * please keep the alphabetical order while adding any new entries
+#   * please keep the test items separated at the end of each section (with a 'test' prefix)
+
+[versions]
+
+javaVersion = '1.8'
+springBootVersion = '2.7.3'
+springCloudVersion = '2021.0.6'
+springDependencyManagementVersion = '1.0.11.RELEASE'
+springDocOpenApiVersion = '1.7.0'
+
+[plugins]
+
+springBootFramework = { id = 'org.springframework.boot', version.ref = 'springBootVersion' }
+springDependencyManagement = { id = 'io.spring.dependency-management', version.ref = 'springDependencyManagementVersion' }
+
+
+[libraries]
+
+springBootStarterActuator = { module = 'org.springframework.boot:spring-boot-starter-actuator' }
+springBootStarterWebFlux = { module = 'org.springframework.boot:spring-boot-starter-webflux' }
+springBootWebFlux = { module = 'org.springframework.boot:spring-boot-starter-webflux' }
+springCloudStarterStreamRabbit = { module = 'org.springframework.cloud:spring-cloud-starter-stream-rabbit' }
+springCloudStarterStreamKafka = { module = 'org.springframework.cloud:spring-cloud-starter-stream-kafka' }
+springDocOpenApiCommon = { module = 'org.springdoc:springdoc-openapi-common', version.ref = 'springDocOpenApiVersion' }
+springDocOpenApiWebFlux = { module = 'org.springdoc:springdoc-openapi-webflux-ui', version.ref = 'springDocOpenApiVersion' }
+
+testSpringBootStarter = { module = 'org.springframework.boot:spring-boot-starter-test' }
+
+[bundles]
+

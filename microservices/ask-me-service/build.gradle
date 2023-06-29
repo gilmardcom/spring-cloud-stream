@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+    alias(libs.plugins.springDependencyManagement)
+    alias(libs.plugins.springBootFramework)
+}
+
+group = 'com.gilmard.spring-cloud-stream.microservices.composite.product'
+version = '1.0.0-SNAPSHOT'
+sourceCompatibility = libs.versions.javaVersion.get()
+
+repositories {
+    mavenCentral()
+}
+
+jar {
+    enabled = false
+}
+
+dependencies {
+    implementation project(':api')
+    implementation libs.springBootStarterActuator
+    implementation libs.springBootStarterWebFlux
+    implementation libs.springCloudStarterStreamRabbit
+    implementation libs.springCloudStarterStreamKafka
+    implementation libs.springDocOpenApiWebFlux
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${libs.versions.springCloudVersion.get()}"
+    }
+}
+
+test {
+    useJUnitPlatform()
+}

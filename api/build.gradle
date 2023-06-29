@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+    alias(libs.plugins.springDependencyManagement)
+}
+
+group = 'com.gilmard.spring-cloud-stream.api'
+version = '1.0.0-SNAPSHOT'
+sourceCompatibility = libs.versions.javaVersion.get()
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation platform("org.springframework.boot:spring-boot-dependencies:${libs.versions.springBootVersion.get()}")
+
+    implementation libs.springBootWebFlux
+    implementation libs.springDocOpenApiCommon
+
+    testImplementation libs.testSpringBootStarter
+}
+
+test {
+    useJUnitPlatform()
+}

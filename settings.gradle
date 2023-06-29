@@ -1,0 +1,5 @@
+rootProject.name='SCE'
+
+include ':api'
+include ':microservices:ask-me-service'
+include ':microservices:time-service'
