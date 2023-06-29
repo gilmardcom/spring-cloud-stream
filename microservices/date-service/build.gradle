@@ -4,7 +4,7 @@ plugins {
     alias(libs.plugins.springBootFramework)
 }
 
-group = 'com.gilmard.spring-cloud-stream.microservices.ask.me'
+group = 'com.gilmard.spring-cloud-stream.microservices.distributor'
 version = '1.0.0-SNAPSHOT'
 sourceCompatibility = libs.versions.javaVersion.get()
 
@@ -18,11 +18,10 @@ jar {
 
 dependencies {
     implementation project(':api')
+    implementation libs.springBootStarter
     implementation libs.springBootStarterActuator
-    implementation libs.springBootStarterWebFlux
     implementation libs.springCloudStarterStreamRabbit
     implementation libs.springCloudStarterStreamKafka
-    implementation libs.springDocOpenApiWebFlux
 }
 
 dependencyManagement {

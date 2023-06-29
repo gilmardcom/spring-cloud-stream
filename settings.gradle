@@ -2,4 +2,6 @@ rootProject.name='SCE'
 
 include ':api'
 include ':microservices:ask-me-service'
+include ':microservices:distributor-service'
 include ':microservices:time-service'
+include ':microservices:date-service'

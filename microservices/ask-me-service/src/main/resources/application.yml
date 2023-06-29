@@ -24,14 +24,13 @@ api:
       email: contact@mail.com
 
 spring.cloud.function:
-  definition: questionProcessor;answerConsumer
+  definition: answerConsumer
+
 spring.cloud.stream:
   defaultBinder: rabbit
   bindings:
-    questionProcessor-in-0:
+    questionSupplier-out-0:
       destination: questions
-    questionProcessor-out-0:
-      destination: answers
     answerConsumer-in-0:
       destination: answers
 

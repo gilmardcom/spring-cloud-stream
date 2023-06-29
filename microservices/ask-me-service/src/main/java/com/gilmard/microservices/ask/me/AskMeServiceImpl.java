@@ -32,8 +32,7 @@ public class AskMeServiceImpl implements AskMe {
 
         QuestionType questionType = QuestionType.from(type);
         waitForAnswer = new CompletableFuture<>();
-        System.out.println(">>> Question asked");
-        streamBridge.send("questionProcessor-in-0", questionType);
+        streamBridge.send("questionSupplier-out-0", questionType);
 
         return Mono.fromCallable(() -> {
             try {
@@ -45,18 +44,7 @@ public class AskMeServiceImpl implements AskMe {
     }
 
     @Bean
-    public Function<QuestionType, Answer> questionProcessor() {
-        return questionType -> {
-            System.out.println("~~~ Question processed");
-            return new Answer(questionType);
-        };
-    }
-
-    @Bean
     public Consumer<Answer> answerConsumer() {
-        return answer -> {
-            System.out.println("<<< Question answered");
-            waitForAnswer.complete(answer);
-        };
+        return answer -> waitForAnswer.complete(answer);
     }
 }

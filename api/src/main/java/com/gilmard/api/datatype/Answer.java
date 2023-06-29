@@ -40,8 +40,8 @@ public class Answer {
         return timestampAnswered;
     }
 
-    public void setTimestampAnswered(ZonedDateTime timestampAnswered) {
-        this.timestampAnswered = timestampAnswered;
+    public void assignTimestampAnswered() {
+        this.timestampAnswered = ZonedDateTime.now();
     }
 
     @JsonSerialize(using = ZonedDateTimeSerializer.class)

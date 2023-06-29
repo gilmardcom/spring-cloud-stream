@@ -12,6 +12,30 @@ services:
       rabbitmq:
         condition: service_healthy
 
+  distributor:
+    build: microservices/distributor-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+
+  timeservice:
+    build: microservices/time-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+
+  dateservice:
+    build: microservices/date-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+
   rabbitmq:
     image: rabbitmq:3.11.0
     user: 999

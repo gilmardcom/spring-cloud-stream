@@ -1,0 +1,35 @@
+spring:
+  main:
+    web-application-type: none
+
+spring.cloud.function:
+  definition: timeProcessor
+
+spring.cloud.stream:
+  defaultBinder: rabbit
+  bindings:
+    timeProcessor-in-0:
+      destination: timeQuestions
+    timeProcessor-out-0:
+      destination: answers
+
+spring.cloud.stream.kafka.binder:
+  brokers: 127.0.0.1
+  defaultBrokerPort: 9092
+
+spring.rabbitmq:
+  host: 127.0.0.1
+  port: 5672
+  username: guest
+  password: guest
+
+logging:
+  level:
+    root: INFO
+    com.gilmard: DEBUG
+
+---
+spring.config.activate.on-profile: docker
+spring.rabbitmq.host: rabbitmq
+spring.cloud.stream.kafka.binder.brokers: kafka
+

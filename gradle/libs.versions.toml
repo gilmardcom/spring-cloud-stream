@@ -19,6 +19,7 @@ springDependencyManagement = { id = 'io.spring.dependency-management', version.r
 
 [libraries]
 
+springBootStarter = { module = 'org.springframework.boot:spring-boot-starter' }
 springBootStarterActuator = { module = 'org.springframework.boot:spring-boot-starter-actuator' }
 springBootStarterWebFlux = { module = 'org.springframework.boot:spring-boot-starter-webflux' }
 springBootWebFlux = { module = 'org.springframework.boot:spring-boot-starter-webflux' }
