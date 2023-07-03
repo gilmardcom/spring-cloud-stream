@@ -23,16 +23,16 @@ api:
       url: URL TO CONTACT
       email: contact@mail.com
 
-spring.cloud.function:
-  definition: answerConsumer
-
-spring.cloud.stream:
-  defaultBinder: rabbit
-  bindings:
-    questionSupplier-out-0:
-      destination: questions
-    answerConsumer-in-0:
-      destination: answers
+spring.cloud:
+  function:
+    definition: answerConsumer
+  stream:
+    defaultBinder: rabbit
+    bindings:
+      questionSupplier-out-0:
+        destination: questions
+      answerConsumer-in-0:
+        destination: answers
 
 spring.cloud.stream.kafka.binder:
   brokers: 127.0.0.1
@@ -55,3 +55,9 @@ server.port: 8080
 spring.rabbitmq.host: rabbitmq
 spring.cloud.stream.kafka.binder.brokers: kafka
 
+---
+spring.config.activate.on-profile: kafka
+management.health.rabbit.enabled: false
+spring.cloud.stream.defaultBinder: kafka
+spring.kafka.bootstrap-servers: kafka:9092
+#spring.cloud.stream.kafka.binder.replication-factor: 1
