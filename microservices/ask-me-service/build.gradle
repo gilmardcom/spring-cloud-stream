@@ -23,6 +23,9 @@ dependencies {
     implementation libs.springCloudStarterStreamRabbit
     implementation libs.springCloudStarterStreamKafka
     implementation libs.springDocOpenApiWebFlux
+    // instead of the following: 'group:name:version'
+    // implementation 'org.springdoc:springdoc-openapi-webflux-ui:1.7.0'
+
 }
 
 dependencyManagement {
