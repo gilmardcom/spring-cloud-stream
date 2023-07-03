@@ -2,6 +2,7 @@ package com.gilmard.microservices.time;
 
 import com.gilmard.api.datatype.Answer;
 import com.gilmard.api.datatype.QuestionType;
+import com.gilmard.util.http.ServiceAddressFinder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -18,6 +19,12 @@ public class TimeServiceApplication {
 
     private static final Logger LOG = LoggerFactory.getLogger(TimeServiceApplication.class);
 
+    private final ServiceAddressFinder serviceAddressFinder;
+
+    public TimeServiceApplication(ServiceAddressFinder serviceAddressFinder) {
+        this.serviceAddressFinder = serviceAddressFinder;
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(TimeServiceApplication.class, args);
     }
@@ -28,6 +35,7 @@ public class TimeServiceApplication {
             Answer answer = new Answer(QuestionType.TIME);
             answer.setData(LocalTime.now().toString());
             answer.assignTimestampAnswered();
+            answer.setServiceAddress(serviceAddressFinder.getServiceAddress());
             return answer;
         };
     }

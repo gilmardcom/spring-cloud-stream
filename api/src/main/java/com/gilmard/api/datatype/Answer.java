@@ -10,6 +10,7 @@ public class Answer {
     private final ZonedDateTime timestampAsked;
     private String data;
     private ZonedDateTime timestampAnswered;
+    private String serviceAddress;
 
     public Answer() {
         this.type = null;
@@ -49,5 +50,11 @@ public class Answer {
         return timestampAsked;
     }
 
+    public String getServiceAddress() {
+        return serviceAddress;
+    }
 
+    public void setServiceAddress(String serviceAddress) {
+        this.serviceAddress = serviceAddress;
+    }
 }

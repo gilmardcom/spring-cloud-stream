@@ -22,7 +22,6 @@ springDependencyManagement = { id = 'io.spring.dependency-management', version.r
 springBootStarter = { module = 'org.springframework.boot:spring-boot-starter' }
 springBootStarterActuator = { module = 'org.springframework.boot:spring-boot-starter-actuator' }
 springBootStarterWebFlux = { module = 'org.springframework.boot:spring-boot-starter-webflux' }
-springBootWebFlux = { module = 'org.springframework.boot:spring-boot-starter-webflux' }
 springCloudStarterStreamRabbit = { module = 'org.springframework.cloud:spring-cloud-starter-stream-rabbit' }
 springCloudStarterStreamKafka = { module = 'org.springframework.cloud:spring-cloud-starter-stream-kafka' }
 springDocOpenApiCommon = { module = 'org.springdoc:springdoc-openapi-common', version.ref = 'springDocOpenApiVersion' }

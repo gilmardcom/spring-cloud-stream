@@ -2,6 +2,7 @@ package com.gilmard.microservices.distributor;
 
 import com.gilmard.api.datatype.Answer;
 import com.gilmard.api.datatype.QuestionType;
+import com.gilmard.util.http.ServiceAddressFinder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -20,8 +21,11 @@ public class DistributorServiceApplication {
 
     private final StreamBridge streamBridge;
 
-    public DistributorServiceApplication(StreamBridge streamBridge) {
+    private final ServiceAddressFinder serviceAddressFinder;
+
+    public DistributorServiceApplication(StreamBridge streamBridge, ServiceAddressFinder serviceAddressFinder) {
         this.streamBridge = streamBridge;
+        this.serviceAddressFinder = serviceAddressFinder;
     }
 
     public static void main(String[] args) {
@@ -42,6 +46,7 @@ public class DistributorServiceApplication {
                 default:
                     final Answer answer = new Answer(QuestionType.UNKNOWN);
                     answer.assignTimestampAnswered();
+                    answer.setServiceAddress(serviceAddressFinder.getServiceAddress());
                     streamBridge.send("unknownAnswer-out-0", answer);
                     break;
             }
